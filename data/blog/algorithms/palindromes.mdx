@@ -1,0 +1,49 @@
+---
+title: Detecting palindromes
+date: '2023-12-11'
+tags: ['algorithms', 'string']
+draft: false
+summary: 'Unravel the complexities of palindrome detection in JavaScript! Delve into two insightful methods: the classic array reversal and the character comparison technique.'
+---
+
+# Introduction
+
+In the world of programming, the challenge of detecting palindromes presents a fascinating and practical problem. 
+
+A palindrome is a word, phrase, or sequence that reads the same forwards and backwards, with every character counting — this includes letters, numbers, spaces, and even punctuation marks. For instance, the phrase "A man, a plan, a canal, Panama!" remains the same when its characters are reversed. Similarly, "racecar" and "madam" are palindromes. 
+
+Identifying whether a string is a palindrome, is a common challenge in coding interviews and exercises, testing a programmer's ability to manipulate strings in JavaScript. In this blog we explore two different solutions.
+
+# Solutions
+
+## 1. Comparing Characters
+
+The first approach is to compare characters from the start and end of the string:
+```javascript
+function palindrome(str) {
+  return str.split('').every((char, i) => {
+    return char === str[str.length - i - 1];
+  });
+}
+```
+
+This function uses the [every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) method to compare each character with its counterpart from the end. While this method checks each character pair only once, it actually iterates through the entire array, leading to an inefficiency as each character is checked twice - once from the beginning and once from the end. This is unnecessary since a palindrome can be confirmed or denied by checking just half of the string.
+
+
+## 2. Using Array Methods
+
+Another method for identifying a palindrome involves reversing the string and comparing it to the original:
+
+```javascript
+function palindrome(str) {
+  const reversed = str.split('').reverse().join('');
+  return str === reversed;
+}
+```
+
+This method splits the string into an array, reverses it, then joins it back into a string. The palindrome check is done by comparing this reversed string with the original.
+Both approaches to palindrome detection in JavaScript have their merits. The array reversal method is straightforward but can be less efficient for longer strings due to the creation of a new string. The character comparison method, while more direct, can lead to redundancy in checks. The choice between these methods depends on the specific context and performance considerations of your application, along with personal coding style preferences in JavaScript.Both approaches to palindrome detection in JavaScript have their merits. The array reversal method is straightforward but can be less efficient for longer strings due to the creation of a new string. The character comparison method, while more direct, can lead to redundancy in checks. The choice between these methods depends on the specific context and performance considerations of your application, along with personal coding style preferences in JavaScript.
+
+# Conclusion
+
+Detecting palindromes in JavaScript essentially boils down to understanding how to reverse a string. While the array reversal method is a direct application of this concept, the character comparison method provides a variation on it. Both methods demonstrate that once you grasp string reversal, identifying palindromes becomes a relatively straightforward task. The choice between these methods depends more on personal coding preferences and specific performance considerations than on the complexity of the problem itself.
