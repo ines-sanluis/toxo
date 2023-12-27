@@ -8,7 +8,7 @@ summary: 'Dive into the intricacies of reversing integers in JavaScript! Explore
 
 # Introduction
 
-Reversing an integer in JavaScript is a common problem that tests a programmer's ability to manipulate numbers and strings. The challenge is to take an integer and return a new integer that represents the original number's digits in reverse order. This problem becomes more interesting when it involves both positive and negative numbers. For example, reversing 15 should return 51, while reversing -15 should yield -51. Handling cases like 500, where the reversed integer should not have leading zeros, adds another layer to the challenge.
+Reversing an integer in JavaScript is a common problem that tests a programmer's ability to manipulate numbers and strings. The challenge is to take an integer and return a new integer that represents the original number's digits in reverse order. This problem becomes more interesting when it involves both positive and negative numbers. For example, reversing `15` should return `51`, while reversing `-15` should yield `-51`. Handling cases like `500`, where the reversed integer should not have leading zeros, adds another layer to the challenge.
 
 # Solution
 
@@ -26,13 +26,13 @@ function reverseInt(n) {
 }
 ```
 # Breaking it down
-1. **Converting the integer to a string**: First, the integer n is converted into a string using the toString() method. This is necessary because the split method, which is used next, works on strings, not numbers.
+1. **Converting the integer to a string**: First, the integer `n` is converted into a string using the `toString()` method. This is necessary because the `split` method, which is used next, works on strings, not numbers.
 
 2. **Reversing the string**: The string is then split into an array of characters, reversed, and joined back into a string. These operations are chained together for efficiency.
 
-3. **Converting back to an integer**: The parseInt() function is used to convert the reversed string back into an integer.
+3. **Converting back to an integer**: The `parseInt()` function is used to convert the reversed string back into an integer.
 
-4. **Adjusting for sign**: Finally, the result is multiplied by the sign of the original number using Math.sign(n). This ensures that the reversed integer retains the original number's sign, handling both positive and negative integers correctly.
+4. **Adjusting for sign**: Finally, the result is multiplied by the sign of the original number using `Math.sign(n)`. This ensures that the reversed integer retains the original number's sign, handling both positive and negative integers correctly.
 
 # Conclusion
 
