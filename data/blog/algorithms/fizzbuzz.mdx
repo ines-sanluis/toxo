@@ -1,0 +1,71 @@
+---
+title: Mastering the fizzbuzz problem
+date: '2024-01-07'
+tags: ['algorithms']
+draft: false
+summary: 'Learn how to elegantly solve this classic programming problem using JavaScript. Explore the logical conditions that replace multiples of three with "Fizz", multiples of five with "Buzz" and both with "FizzBuzz".'
+---
+
+# Introduction
+
+FizzBuzz, a timeless programming problem, offers a unique challenge that combines logical thinking and control flow structures. 
+
+In this blog post, we'll unravel the intricacies of FizzBuzz, exploring an elegant JavaScript solution. The task involves iterating through numbers from 1 to n, replacing multiples of three with "Fizz", multiples of five with "Buzz" and multiples of both with "FizzBuzz". This problem serves as a great exercise to hone your programming skills, showcasing the versatility of JavaScript's logical conditions.
+
+# Solution
+
+
+```javascript
+function fizzBuzz(n) {
+  for (let i = 1; i <= n; i++) {
+    // Is the number a multiple of 3 and 5?
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log('FizzBuzz');
+    } else if (i % 3 === 0) {
+      // Is the number a multiple of 3?
+      console.log('Fizz');
+    } else if (i % 5 === 0) {
+      // Is the number a multiple of 5?
+      console.log('Buzz');
+    } else {
+      // Not a multiple of 3 or 5
+      console.log(i);
+    }
+  }
+}
+```
+
+# Explanation
+
+The solution elegantly uses conditional statements and the modulus operator to determine whether a number is a multiple of 3, 5, or both. If a number is a multiple of both 3 and 5, "FizzBuzz" is printed; if only of 3, "Fizz" is printed; if only of 5, "Buzz" is printed. If a number is neither a multiple of 3 nor 5, the number itself is printed.
+
+## Modulus operator
+
+The percentage symbol (%) in programming languages, including JavaScript, is known as the modulus operator. The modulus operator returns the remainder when one number is divided by another. It is often used in mathematical calculations and is particularly useful in various programming scenarios.
+
+Here's the basic syntax:
+
+```javascript
+result = dividend % divisor
+```
+
+In this expression:
+- dividend is the number you want to find the remainder for.
+- divisor is the number by which you want to divide the dividend.
+
+The result of the operation is the remainder after dividing the dividend by the divisor.
+
+For example:
+
+```javascript
+let remainder = 10 % 3;
+console.log(remainder); // Output: 1
+```
+
+In this case, when you divide 10 by 3, the quotient is 3 with a remainder of 1. Therefore, 10 % 3 returns 1.
+
+The modulus operator is commonly used in various programming tasks, such as checking for even or odd numbers, determining divisibility, and cycling through a range of values. In the context of the FizzBuzz problem, the modulus operator is employed to check if a number is a multiple of 3, 5, or both, enabling the program to print "Fizz," "Buzz," or "FizzBuzz" accordingly.
+
+# Conclusion
+
+Mastering FizzBuzz not only demonstrates your understanding of logical conditions in JavaScript but also serves as a foundation for tackling more complex programming challenges. The elegant solution provided here showcases the versatility and readability of JavaScript code.
