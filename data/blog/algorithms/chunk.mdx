@@ -1,0 +1,69 @@
+---
+title: Slicing arrays with precision
+date: '2024-01-09'
+tags: ['algorithms', 'arrays']
+draft: false
+summary: 'Uncover the art of array chunking! Learn how to divide an array into subarrays of a specified size using JavaScript. Explore two elegant solutions, from the simplicity of the while loop to the clever use of array slicing.'
+---
+
+# Introduction
+
+Array manipulation is a fundamental skill in programming, and one common task is dividing an array into smaller subarrays of a specified size. In this blog post, we'll explore the array chunking problem in JavaScript, a challenge that tests your understanding of array iteration and slicing. Whether you're preparing for coding interviews or enhancing your algorithmic thinking, mastering array chunking is a valuable addition to your programming toolkit.
+
+## The problem
+
+Given an array and a chunk size, the task is to divide the array into many subarrays, each of length equal to the specified size.
+
+For example:
+
+```javascript
+chunk([1, 2, 3, 4], 2) // Outputs [[1, 2], [3, 4]]
+chunk([1, 2, 3, 4, 5], 2) // Outputs [[1, 2], [3, 4], [5]]
+chunk([1, 2, 3, 4, 5, 6, 7, 8], 3) // Outputs [[1, 2, 3], [4, 5, 6], [7, 8]]
+```
+
+# Solutions
+
+## Using a While Loop
+
+The first solution employs a while loop to iteratively slice the array into chunks of the specified size that are pushed into a new array. The loop continues until the entire array is fully processed.
+
+```javascript
+function chunk(array, size) {
+  const chunked = [];
+  let index = 0;
+
+  while (index < array.length) {
+    chunked.push(array.slice(index, index + size));
+    index += size;
+  }
+
+  return chunked;
+}
+```
+
+## Using a For Loop and Dynamic Chunking
+
+The second solution utilizes a for loop to iterate through the array. It dynamically checks the size of the last subarray and decides whether to create a new subarray or add an element to the existing one. This approach avoids the need to slice the array explicitly.
+
+```javascript
+function chunk(array, size) {
+  const chunked = [];
+
+  for (let element of array) {
+    const last = chunked[chunked.length - 1];
+
+    if (!last || last.length === size) {
+      chunked.push([element]);
+    } else {
+      last.push(element);
+    }
+  }
+
+  return chunked;
+}
+```
+
+# Conclusion
+
+Array chunking is a versatile problem that demands a thoughtful approach to array manipulation. Both solutions presented here showcase different techniques: one relies on a while loop and slicing, while the other uses a for loop and dynamic chunking. Understanding these methods not only enhances your problem-solving skills but also provides valuable insights into array iteration and manipulation in JavaScript. As you delve into more complex algorithms, the ability to efficiently chunk arrays will undoubtedly become a valuable asset in your programming journey.
