@@ -1,0 +1,84 @@
+title: "Detecting anagrams"
+date: '2023-01-14'
+tags: ['algorithms', 'strings']
+draft: false
+summary: 'Delve into the world of anagrams and unravel the secrets of detecting them in JavaScript. Explore two ingenious solutions, from cleaning strings to building character maps, and witness the power of algorithmic thinking.'
+
+# Introduction
+
+Anagrams, a fascinating linguistic phenomenon, occur when two words or phrases share the same set of characters, rearranged in different orders. In this blog post, we'll embark on the journey of anagram detection in JavaScript. The challenge is to determine whether two provided strings are anagrams of each other, considering characters, ignoring spaces and punctuation, and treating capital letters as the same as lowercase.
+
+## The problem
+
+Given two strings, the task is to check if they are anagrams of each other.
+
+For example:
+```javascript
+  anagrams('rail safety', 'fairy tales') // Outputs True
+  anagrams('RAIL! SAFETY!', 'fairy tales') // Outputs True
+  anagrams('Hi there', 'Bye there') // Outputs False
+```
+
+# Solutions
+
+## Using String Cleaning and Sorting
+
+The initial solution takes a direct approach, involving the cleaning and sorting of strings. The cleanString function plays a pivotal role in this process, eliminating spaces and punctuation, and converting the string to lowercase for a case-insensitive comparison. Subsequently, the string is transformed into an array and sorted in lexicographical order. The final step entails comparing the resulting cleaned strings for equality.
+
+```javascript
+function anagrams(stringA, stringB) {
+  return cleanString(stringA) === cleanString(stringB);
+}
+function cleanString(str) {
+  return str
+    .replace(/[^\w]/g, '') // Remove non-alphanumeric characters using a regular expression
+    .toLowerCase()         // Convert the string to lowercase
+    .split('')             // Split the string into an array of characters
+    .sort()                // Sort the array of characters
+    .join('');             // Join the sorted characters back into a string
+}
+```
+
+## Using Character Maps
+
+The second solution utilizes character maps to build a representation of the characters and their quantities in each string. The resulting character maps are then compared for equality.
+
+```javascript
+function anagrams(stringA, stringB) {
+  // Build character maps for both strings
+  const aCharMap = buildCharMap(stringA);
+  const bCharMap = buildCharMap(stringB);
+
+  // Check if the lengths of the character maps are equal
+  if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
+    // If not, the strings can't be anagrams
+    return false;
+  }
+
+  // Iterate through the characters in the first character map
+  for (let char in aCharMap) {
+    // Check if the character counts are equal in both character maps
+    if (aCharMap[char] !== bCharMap[char]) {
+      // If not, the strings can't be anagrams
+      return false;
+    }
+  }
+
+  // If all checks pass, the strings are anagrams
+  return true;
+}
+
+// Function to build a character map for a string
+function buildCharMap(str) {
+  const charMap = {};
+  // Iterate through the cleaned and lowercase version of the string
+  for (let char of str.replace(/[^\w]/g, '').toLowerCase()) {
+    charMap[char] = charMap[char] + 1 || 1;
+  }
+  return charMap;
+}
+```
+
+# Conclusion
+
+Anagram detection challenges not only test your understanding of string manipulation but also showcase different algorithmic strategies. The solutions presented here offer two distinct approaches: one based on string cleaning and sorting, and the other leveraging character maps. As you navigate through the intricacies of anagram detection, you'll gain valuable insights into JavaScript's string manipulation capabilities and algorithmic thinking.
