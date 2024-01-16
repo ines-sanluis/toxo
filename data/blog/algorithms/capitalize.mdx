@@ -1,0 +1,77 @@
+title: "Capitalizing Words in a Sentence"
+date: '2023-01-15'
+tags: ['algorithms', 'strings']
+draft: false
+summary: 'Embark on a journey of transforming sentences into title case with JavaScript.'
+
+# Introduction
+
+Capitalizing the first letter of each word in a sentence, often known as "title case," is a common text transformation task. Whether you're formatting text for display or improving the aesthetics of user-generated content, this problem frequently arises. In this blog post, we'll delve into a JavaScript solution that accomplishes this task with efficiency and elegance.
+## The problem
+
+Given a sentence, the goal is to capitalize the first letter of each word in the sentence. For example:
+- `capitalize('a short sentence')` should return `'A Short Sentence'`.
+- `capitalize('a lazy fox')` should return `'A Lazy Fox'`.
+- `capitalize('look, it is working!')` should return `'Look, It Is Working!'`.
+
+# Solutions
+
+## Iterative Approach
+
+The first solution adopts an iterative approach to capitalize the first letter of each word in a given string. It begins by initializing a result string with the first character capitalized. The function then iterates through the remaining characters, checking if the preceding character is a space. If a space is detected, the current character is capitalized and appended to the result; otherwise, the character is added as is. 
+
+```javascript
+// Function to capitalize the first letter of each word in a string
+function capitalize(str) {
+  // Initialize the result with the first letter of the input string capitalized
+  let result = str[0].toUpperCase();
+
+  // Iterate through the remaining characters in the string
+  for (let i = 1; i < str.length; i++) {
+    // Check if the previous character is a space
+    if (str[i - 1] === ' ') {
+      // Capitalize the current character and append to the result
+      result += str[i].toUpperCase();
+    } else {
+      // Keep the current character as is and append to the result
+      result += str[i];
+    }
+  }
+
+  // Return the final title case transformed string
+  return result;
+}
+
+// Export the capitalize function for external use
+module.exports = capitalize;
+```
+
+## Array-based Approach
+
+The second solution takes an array-based approach to capitalize the first letter of each word in a given string. It starts by splitting the input string into an array of words using space as a delimiter. Then, it iterates through each word, capitalizing the first letter and appending the rest. The capitalized words are stored in an array, which is later joined back into a string with spaces. 
+
+```javascript
+// Function to capitalize the first letter of each word in a string
+function capitalize(str) {
+  // Initialize an array to store capitalized words
+  const words = [];
+
+  // Split the input string into an array of words using space as delimiter
+  for (let word of str.split(' ')) {
+    // Capitalize the first letter of each word and append the rest
+    words.push(word[0].toUpperCase() + word.slice(1));
+  }
+
+  // Join the capitalized words back into a string with spaces
+  return words.join(' ');
+}
+
+// Export the capitalize function for external use
+module.exports = capitalize;
+```
+
+ This approach leverages array methods for a more functional programming style, introducing a conceptual separation between transforming individual words. 
+
+# Conclusion
+
+In conclusion, both solutions effectively address the challenge of capitalizing the first letter of each word in a string, showcasing the versatility of JavaScript in string manipulation. The iterative approach offers simplicity, directly modifying the string character by character, and can be easier to grasp for developers. On the other hand, the array-based approach adopts a more functional programming style, leveraging array methods for a conceptually cleaner transformation of individual words. The choice between the two depends on factors such as coding style preferences and potential performance considerations.
