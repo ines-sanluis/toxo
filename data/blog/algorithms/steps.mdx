@@ -1,0 +1,88 @@
+---
+title: "Exploring step shapes in JavaScript"
+date: '2024-01-17'
+tags: ['algorithms', 'strings']
+draft: false
+summary: 'Explore two approaches—recursive elegance and iterative simplicity—in solving the challenge of generating step shapes with the '#' character in JavaScript, providing insights into coding styles and preferences.'
+---
+
+# Introduction
+
+In the world of coding challenges, creating patterns and shapes with characters is both intriguing and educational. In this blog post, we'll dive into a fascinating problem: generating a step shape with the `#` character in JavaScript. The goal is to create a visual representation of steps, each level increasing in the number of `#` characters. Let's explore two solutions to this problem, each providing a unique perspective on tackling the challenge.
+
+## The problem
+
+Given a positive number `N`, the task is to construct a step shape with `N` levels, ensuring spaces on the right-hand side. 
+
+For example, when `N = 3`, the output should be:
+```javascript
+  '#  '
+  '## '
+  '###'
+```
+
+# Solutions
+
+
+## A Recursive Approach
+
+The first solution takes a recursive approach, offering an elegant way to construct the step shape. Let's delve into the code:
+
+```javascript
+// Recursive function to build step shape
+function steps(n, row = 0, stair = '') {
+  // Base case: stop recursion when all rows are generated
+  if (n === row) {
+    return;
+  }
+
+  // Check if the current row is complete
+  if (n === stair.length) {
+    // Log the completed row to the console
+    console.log(stair);
+    // Continue with the next row
+    return steps(n, row + 1);
+  }
+
+  // Determine the character to add based on the current position
+  const add = stair.length <= row ? '#' : ' ';
+  // Recursively build the current row
+  steps(n, row, stair + add);
+}
+```
+
+The function uses recursion to build each row of the step shape. It tracks the current row, the current stair configuration, and the character to add (# or space). Once a row is complete, it is logged to the console. The process continues until all rows are generated.
+
+## Iterative Approach
+
+The second solution adopts an iterative approach, constructing the step shape using nested loops. Here's the code:
+
+```javascript
+// Iterative function to build step shape
+function steps(n) {
+  // Iterate through each row
+  for (let row = 0; row < n; row++) {
+    // Initialize the current stair configuration for the row
+    let stair = '';
+
+    // Iterate through each column in the row
+    for (let column = 0; column < n; column++) {
+      // Determine whether to add '#' or ' ' based on the current position
+      if (column <= row) {
+        stair += '#';
+      } else {
+        stair += ' ';
+      }
+    }
+
+    // Log the completed row to the console
+    console.log(stair);
+  }
+}
+```
+
+The function uses two nested loops to iterate through each row and column of the step shape. It appends # characters for positions up to the current row and adds spaces for the rest. Each row is then logged to the console.
+
+# Conclusion
+
+In this exploration of step shapes in JavaScript, we've encountered two distinct solutions—one recursive and the other iterative. While the recursive approach offers an elegant and concise solution, it can be harder to grasp at a glance due to its reliance on recursion. On the other hand, the iterative approach provides a straightforward and easily understandable solution by using nested loops. In practice, developers often prefer the iterative approach for its clarity and simplicity when dealing with step shape problems. The choice between these approaches depends on individual preferences, coding style, and considerations of ease of comprehension. By understanding and implementing both solutions, developers can choose the approach that best fits their coding style and enhances their problem-solving skills.
